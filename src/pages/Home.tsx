@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ToolInspection from './dashboard/ToolInspection';
 
 const Home = () => {
   return (
@@ -7,6 +8,8 @@ const Home = () => {
       <Link to="/login">Login</Link>
       <br />
       <Link to="/dashboard">Go to Dashboard (Private)</Link>
+
+      <ToolInspection />
     </div>
   );
 };

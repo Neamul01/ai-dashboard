@@ -1,3 +1,5 @@
+import { TopMenu } from '../home/TopMenu';
+
 export function Header() {
   return (
     <header className="w-full bg-orange-100 p-4">
@@ -9,7 +11,10 @@ export function Header() {
           height={40}
           className="h-10 w-auto"
         /> */}
-        itage
+        <div className="flex justify-between items-center">
+          <p>itage</p>
+          <TopMenu />
+        </div>
       </div>
     </header>
   );
