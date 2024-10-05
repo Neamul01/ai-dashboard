@@ -14,7 +14,7 @@ export default function TwoFactorAuth() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen  p-4">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <Shield className="mx-auto h-12 w-12 text-blue-500" />

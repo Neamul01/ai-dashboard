@@ -1,40 +1,100 @@
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { useState } from 'react';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Mail, Lock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-export const description =
-  "A simple login form with email and password. The submit button says 'Sign in'.";
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-export function Login() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically handle the login logic
+    console.log('Login attempted with:', email, password);
+  };
+
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
-        <CardDescription>
-          Enter your email below to login to your account.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-4">
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
+    <div className="flex flex-col items-center justify-center min-h-screen  p-4">
+      <div className="w-full max-w-md space-y-8">
+        <h1 className="text-2xl font-bold text-center">ログイン</h1>
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div className="mb-4">
+              <Label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                メール <span className="text-red-500">*</span>
+              </Label>
+              <div className="relative">
+                <Mail
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="pl-10 w-full"
+                  placeholder="メールアドレスを入力"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </div>
+            <div>
+              <Label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                パスワード <span className="text-red-500">*</span>
+              </Label>
+              <div className="relative">
+                <Lock
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="pl-10 w-full"
+                  placeholder="パスワードを入力"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <Button
+              type="submit"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+            >
+              ログイン
+            </Button>
+          </div>
+        </form>
+
+        <div className="flex flex-col items-center mt-4 space-y-2">
+          <Link
+            to="/reset-password"
+            className="text-sm text-blue-500 hover:underline"
+          >
+            パスワードをお忘れですか？
+          </Link>
+          {/* <Link href="/register" className="text-sm text-blue-500 hover:underline">
+            新しいアカウントを登録
+          </Link> */}
         </div>
-        <div className="grid gap-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" required />
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full">Sign in</Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
